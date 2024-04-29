@@ -23,8 +23,10 @@ function App() {
           <div>
           <img src={blood} className="blood-logo" />
           </div>
-          <div className='vira flex items-center bg-white'>
-          <h1>Vira Amalia Putri</h1>
+          <div className='vira flex flex-col items-start pt-4'>
+          <span className='text-2xl font-borel'>Blood Predict</span> <br />
+          Vira Amalia Putri <br />
+          Universitas Sumatera Utara
           </div>
         </div>
         <div className="menu">
@@ -87,6 +89,9 @@ function App() {
             </form>
           </div>
         </div></div>
+        <div className="footer flex justify-center bg-black text-white">
+          develop by <span className='text-yellow-400'><a href="https://instagram.com/alfanirsyadi_">TensorMath©</a></span> 2024
+        </div>
     </div>
 
   );

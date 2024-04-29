@@ -86,11 +86,11 @@ h1 {
   }
 
   .button-min-max {
-    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold;
+    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold rounded-2xl mt-4;
   }
 
   .button-defuzzifikasi {
-    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold;
+    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold rounded-2xl mt-4;
   }
 
   .people {
@@ -122,7 +122,7 @@ h1 {
   }
 
   .menu-item {
-    @apply px-10 hover:bg-white hover:text-black h-full items-center flex w-full font-bold
+    @apply px-10 hover:bg-white hover:text-black h-full items-center flex w-full font-bold hover:cursor-pointer
   }
 
   .blood-logo {
@@ -131,5 +131,13 @@ h1 {
 
   .blood2 {
     @apply absolute -top-20 -right-40 h-96 -z-10 
+  }
+
+  .vira{
+    @apply text-xs
+  }
+
+  input{
+    @apply shadow-lg rounded-2xl focus:border-red-700 mt-2
   }
 }
