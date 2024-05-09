@@ -6,7 +6,13 @@ import people1 from './assets/people1.svg'
 import people2 from './assets/blood-donor.png'
 import blood from './assets/blood-donation.png'
 import blood2 from './assets/blood-donor (1).png'
-
+import {fuzzySetsPersediaan, fuzzySetsPermintaan} from './fuzzy'
+for( let i in fuzzySetsPersediaan){
+  console.log(fuzzySetsPersediaan[i](382))
+}
+for(let i in fuzzySetsPermintaan){
+  console.log(fuzzySetsPermintaan[i](1301))
+}
 
 function App() {
   const [minPersediaan, setMinPersediaan] = useState(0);
@@ -69,7 +75,7 @@ function App() {
             </div>
 
             <button className="button-min-max" type='button'>Fuzzyfikasi</button>
-            <img src={people2} alt="" srcset="" className='people' />
+            <img src={people2} alt="" srcSet="" className='people' />
           </form>
           <div className="main-input">
             <form action="" className="form-prediksi">
