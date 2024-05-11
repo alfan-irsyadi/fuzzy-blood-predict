@@ -76,7 +76,7 @@ function App() {
 
       <div id="id01" className={"bg-modal transition-all duration-500 ease-in-out " + (showModal ? "flex" : "-translate-y-full")}>
         <div className={'animation modal '+(rasio<3/2 ? 'w-2/3':'w-1/3')+(showModal?" ":" -translate-y-full")}>
-          <div className='flex flex-row text-left justify-between border-b-2 p-4 border-b-red-600 w-full font-bold text-2xl mb-4'>
+          <div className='flex flex-row text-left shadow-xl justify-between border-b-4 p-4 border-b-red-600 w-full font-bold text-2xl mb-4'>
             <h1>Hasil Prediksi</h1>
             <button onClick={e=>setShowModal(false)}>&times;</button>
           </div>
@@ -88,11 +88,11 @@ function App() {
           </div>
           <div className='m-4'>
             <div className='flex flex-col my-4'>
-              <span>Menggunakan Metode Mamdani</span>
+              <span>Menggunakan Metode Sugeno</span>
               <span className='text-3xl font-bold'>{sugeno}</span>
             </div>
           </div>
-          <div className="bg-gray-100 flex justify-end font-bold">
+          <div className="bg-gray-100 flex justify-end font-bold drop-shadow-xl">
           <button className='shadow-xl text-white bg-red-600 px-4 py-2 m-2' onClick={e=>setShowModal(false)}>Close</button>
           </div>
         </div>
