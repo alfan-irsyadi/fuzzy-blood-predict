@@ -10,9 +10,7 @@ import { FuzzyLogic, rules } from './fuzzy'
 import { Modal } from './modal'
 
 const print = x => console.log(x)
-var GoldaA = new FuzzyLogic([12, 413, 814], [910, 1279, 1648], [673, 1345, 2017])
-GoldaA.setRules(rules)
-print(GoldaA.mamdani(382, 1301))
+
 function App() {
   const [golda, setGolda] = useState('A')
   const [cookies, setCookies] = useCookies(['dataset'])
@@ -33,10 +31,12 @@ function App() {
   // print(muPersediaan)
   const rasio = width / height
 
-  var GoldaA = new FuzzyLogic(muPersediaan, muPermintaan, muPenerimaan)
-  GoldaA.setRules(rules)
+  
 
   function predict(e) {
+    var GoldaA = new FuzzyLogic(muPersediaan, muPermintaan, muPenerimaan)
+    GoldaA.setRules(rules)
+    print(['alp', GoldaA])    
     setShowModal(true)
     setMamdani(Math.ceil(GoldaA.mamdani(persediaan, permintaan)))
     setSugeno(Math.ceil(GoldaA.sugeno(persediaan, permintaan)))
@@ -103,7 +103,7 @@ function App() {
       <div className={'flex grid-cols-3 ' + (rasio < 3 / 2 ? 'mobile' : 'desktop h-screen ') + ' shadow-2xl'}>
         <div className='bg-white my-auto h-full px-10 py-4 items-center flex flex-col col-span-2'>
           <div className='flex flex-row text-left py-4 border-b-2 border-b-red-600 justify-start w-full font-bold text-2xl mb-4'>
-            <h1>Update Semesta</h1>
+            <h1>Semesta Perhitungan</h1>
           </div>
           <form action="" className='grid grid-cols-2 gap-x-10'>
             <div className='col-span-2'>

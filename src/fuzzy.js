@@ -86,13 +86,34 @@ export class FuzzyLogic {
         var x2 = alpha2 > yPot1 ? this.invFuzzyNaik(alpha2, a, b) : this.invFuzzyTurun(alpha2, a, b)
         var x3 = alpha2 < yPot2 ? this.invFuzzyNaik(alpha2, b, c) : this.invFuzzyTurun(alpha2, b, c)
         var x4 = alpha3 > yPot2 ? this.invFuzzyNaik(alpha3, b, c) : this.invFuzzyTurun(alpha3, b, c)
+        this.x1 = x1
+        this.x2 = x2
+        this.x3 = x3
+        this.x4 = x4
 
-        luas = this.integral(x => alpha1 * x, [a, x1]) + this.integral(x => alpha2 * x, [x2, b])
+        luas = this.integral(x => alpha1 * x, [a, x1]) 
+        // print(['luas 1 A - X1', luas])
+        
         luas += this.integral(x => (alpha1 < yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [x1, xPot1])
+        // print(['luas II X1-Xpot1', this.integral(x => (alpha1 < yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [x1, xPot1])])
         luas += this.integral(x => (alpha2 > yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [xPot1, x2])
-        luas += this.integral(x => x * alpha2, [b, x3]) + this.integral(x => x * alpha3, [x4, c])
+        // print(['luas III Xpot1-X2', this.integral(x => (alpha2 > yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [xPot1, x2])])
+        luas += this.integral(x => alpha2 * x, [x2, b])
+        // print(['luas IV X2 - B', this.integral(x => alpha2 * x, [x2, b])])
+
+        luas += this.integral(x => x * alpha2, [b, x3])
+        // print(['luas V B - X3', this.integral(x => x * alpha2, [b, x3])])
+
         luas += this.integral(x => (alpha2 < yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [x3, xPot2])
+        // print(['luas VI X3 - Xpot2', this.integral(x => (alpha2 < yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [x3, xPot2])])
+        
         luas += this.integral(x => (alpha3 > yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [xPot2, x4])
+        // print(['luas VII Xpot2 - X4', this.integral(x => (alpha3 > yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [xPot2, x4])])
+
+        luas += this.integral(x => x * alpha3, [x4, c])
+        // print(['luas VIII X - B', this.integral(x => x * alpha3, [x4, c])])
+        // print(['luas', luas])
+
         /*
         (b - x)/(b-a) = (x - a)/(b - a)
         b - x = x - a
@@ -124,12 +145,28 @@ export class FuzzyLogic {
         var x4 = alpha3 > yPot2 ? this.invFuzzyNaik(alpha3, b, c) : this.invFuzzyTurun(alpha3, b, c)
         print([alpha1, yPot1])
 
-        luas = this.integral(x => alpha1, [a, x1]) + this.integral(x => alpha2, [x2, b])
-        luas += this.integral(x => (alpha1 < yPot1 ? this.fuzzyNaik(x, a, b) : this.fuzzyTurun(x, a, b)), [x1, xPot1])
-        luas += this.integral(x => (alpha2 > yPot1 ? this.fuzzyNaik(x, a, b) : this.fuzzyTurun(x, a, b)), [xPot1, x2])
-        luas += this.integral(x => alpha2, [b, x3]) + this.integral(x => alpha3, [x4, c])
-        luas += this.integral(x => (alpha2 < yPot2 ? this.fuzzyNaik(x, b, c) : this.fuzzyTurun(x, b, c)), [x3, xPot2])
-        luas += this.integral(x => (alpha3 > yPot2 ? this.fuzzyNaik(x, b, c) : this.fuzzyTurun(x, b, c)), [xPot2, x4])
+        luas = this.integral(x => alpha1 , [a, x1]) 
+        print(['luas 1 A - X1', luas])
+        
+        luas += this.integral(x => (alpha1 < yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [x1, xPot1])
+        print(['luas II X1-Xpot1', this.integral(x => (alpha1 < yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [x1, xPot1])])
+        luas += this.integral(x => (alpha2 > yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [xPot1, x2])
+        print(['luas III Xpot1-X2', this.integral(x => (alpha2 > yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [xPot1, x2])])
+        luas += this.integral(x => alpha2 , [x2, b])
+        print(['luas IV X2 - B', this.integral(x => alpha2 , [x2, b])])
+
+        luas += this.integral(x =>  alpha2, [b, x3])
+        print(['luas V B - X3', this.integral(x =>  alpha2, [b, x3])])
+
+        luas += this.integral(x => (alpha2 < yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [x3, xPot2])
+        print(['luas VI X3 - Xpot2', this.integral(x => (alpha2 < yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [x3, xPot2])])
+        
+        luas += this.integral(x => (alpha3 > yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [xPot2, x4])
+        print(['luas VII Xpot2 - X4', this.integral(x => (alpha3 > yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [xPot2, x4])])
+
+        luas += this.integral(x =>  alpha3, [x4, c])
+        print(['luas VIII X - B', this.integral(x =>  alpha3, [x4, c])])
+        print(['luas', luas])
         /*
         (b - x)/(b-a) = (x - a)/(b - a)
         b - x = x - a
