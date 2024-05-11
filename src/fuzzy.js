@@ -1,6 +1,6 @@
 
 
-class FuzzyLogic {
+export class FuzzyLogic {
     constructor(persediaan, permintaan, penerimaan) {
         var [a1, b1, c1] = persediaan
         this.batasPersediaan = persediaan
@@ -205,7 +205,7 @@ class FuzzyLogic {
 
 const print = (x) => console.log(x)
 
-const rules = [{
+export const rules = [{
     'persediaan': 'sedikit',
     'permintaan': 'sedikit',
     'penerimaan': 'sedikit'
@@ -251,6 +251,4 @@ const rules = [{
     'penerimaan': 'banyak'
 },]
 
-var GoldaA = new FuzzyLogic([12, 413, 814], [910, 1279, 1648], [673, 1345, 2017])
-GoldaA.setRules(rules)
-print(GoldaA.mamdani(100, 1000))
+

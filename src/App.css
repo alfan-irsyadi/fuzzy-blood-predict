@@ -86,4 +86,10 @@
   .desktop{
     @apply grid-cols-3
   }
+  .bg-modal{
+    @apply fixed top-0 h-screen w-screen z-[999] bg-opacity-80 bg-black flex justify-center items-center
+  }
+  .modal{
+    @apply bg-white
+  }
 }
