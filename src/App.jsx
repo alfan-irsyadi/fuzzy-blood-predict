@@ -156,7 +156,7 @@ function App() {
               })
             }
             {/* <input type="submit" value="update" /> */}
-            <button type="button" className='bg-red-600 h-10 text-white font-bold shadow-xl py-2 px-4 my-4' onClick={e => update()}>Update</button>
+            <button type="button" className={'bg-green-800 h-10 text-white font-bold shadow-xl py-2 px-4 my-4'+(rasio<3/2 ? " col-span-2": "")} onClick={e => update()}>Update</button>
           </form>
         </div>
         <div className='px-10 py-4 bg-red-600 col-span-1 text-white'>
@@ -173,7 +173,7 @@ function App() {
               <label htmlFor="permintaan">Jumlah Permintaan</label>
               <input type="number" name='permintaan' className='input text-black' value={permintaan} onChange={e => setPermintaan(e.target.value)} />
             </div>
-            <button type="button" className='my-4 font-bold bg-green-800 px-4 py-2 w-full' onClick={e => predict(e)}>Prediksi</button>
+            <button type="button" className='my-4 font-bold bg-black px-4 py-2 w-full' onClick={e => predict(e)}>Prediksi</button>
           </form>
         </div>
       </div>
