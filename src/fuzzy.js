@@ -3,11 +3,11 @@
 export class FuzzyLogic {
     constructor(persediaan, permintaan, penerimaan) {
         var [a1, b1, c1] = persediaan
+        var [a2, b2, c2] = permintaan
+        var [a3, b3, c3] = penerimaan
         this.batasPersediaan = persediaan
         this.batasPermintaan = permintaan
         this.batasPenerimaan = penerimaan
-        var [a2, b2, c2] = permintaan
-        var [a3, b3, c3] = penerimaan
         this.fuzzySets = {
             'persediaan': this.fuzzySet(a1, b1, c1),
             'permintaan': this.fuzzySet(a2, b2, c2),

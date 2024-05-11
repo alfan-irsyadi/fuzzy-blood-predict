@@ -74,8 +74,8 @@ function App() {
       {/* MODAL */}
       {/* <button onClick={e=>setShowModal(true)} >Open Modal</button> */}
 
-      <div id="id01" className={"bg-modal " + (showModal ? "flex" : "hidden")}>
-        <div className='modal w-1/3'>
+      <div id="id01" className={"bg-modal transition-all duration-500 ease-in-out " + (showModal ? "flex" : "-translate-y-full")}>
+        <div className={'animation modal '+(rasio<3/2 ? 'w-2/3':'w-1/3')+(showModal?" ":" -translate-y-full")}>
           <div className='flex flex-row text-left justify-between border-b-2 p-4 border-b-red-600 w-full font-bold text-2xl mb-4'>
             <h1>Hasil Prediksi</h1>
             <button onClick={e=>setShowModal(false)}>&times;</button>
@@ -156,7 +156,7 @@ function App() {
               })
             }
             {/* <input type="submit" value="update" /> */}
-            <button type="button" className='bg-red-600 h-8 text-white font-bold shadow-xl my-4' onClick={e => update()}>Update</button>
+            <button type="button" className='bg-red-600 h-10 text-white font-bold shadow-xl py-2 px-4 my-4' onClick={e => update()}>Update</button>
           </form>
         </div>
         <div className='px-10 py-4 bg-red-600 col-span-1 text-white'>
@@ -173,11 +173,11 @@ function App() {
               <label htmlFor="permintaan">Jumlah Permintaan</label>
               <input type="number" name='permintaan' className='input text-black' value={permintaan} onChange={e => setPermintaan(e.target.value)} />
             </div>
-            <button type="button" className='my-4 bg-green-800 px-4 py-2' onClick={e => predict(e)}>Prediksi</button>
+            <button type="button" className='my-4 font-bold bg-green-800 px-4 py-2' onClick={e => predict(e)}>Prediksi</button>
           </form>
         </div>
       </div>
-      <footer className='bg-black text-white flex justify-center'>copyright <span className='text-yellow-600'>TensorMath</span>©️2024</footer>
+      <footer className='bg-black text-white flex justify-center gap-x-2'>copyright <span className='text-yellow-600'><a href="http://instagram.com/alfanirsyadi_">TensorMath</a></span>©️2024</footer>
     </div>
   );
   // return (

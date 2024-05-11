@@ -92,4 +92,7 @@
   .modal{
     @apply bg-white
   }
+  .animation{
+    @apply transition-all duration-1000 ease-in-out
+  }
 }
