@@ -93,7 +93,7 @@ function App() {
             </div>
           </div>
           <div className="bg-gray-100 flex justify-end font-bold drop-shadow-xl">
-          <button className='shadow-xl text-white bg-red-600 px-4 py-2 m-2' onClick={e=>setShowModal(false)}>Close</button>
+          <button className='shadow-xl text-white bg-red-600 px-4 py-2 m-2 w-full' onClick={e=>setShowModal(false)}>Close</button>
           </div>
         </div>
 
@@ -173,7 +173,7 @@ function App() {
               <label htmlFor="permintaan">Jumlah Permintaan</label>
               <input type="number" name='permintaan' className='input text-black' value={permintaan} onChange={e => setPermintaan(e.target.value)} />
             </div>
-            <button type="button" className='my-4 font-bold bg-green-800 px-4 py-2' onClick={e => predict(e)}>Prediksi</button>
+            <button type="button" className='my-4 font-bold bg-green-800 px-4 py-2 w-full' onClick={e => predict(e)}>Prediksi</button>
           </form>
         </div>
       </div>
