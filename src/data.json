@@ -1,0 +1,22 @@
+{
+    "O":{
+        "persediaan": [11, 895],
+        "permintaan": [1651, 2796],
+        "penerimaan": [1266, 3222]
+    },
+    "A":{
+        "persediaan": [12, 814],
+        "permintaan": [910, 1648],
+        "penerimaan": [673, 2017]
+    },
+    "B":{
+        "persediaan": [8, 918],
+        "permintaan": [1176, 1894],
+        "penerimaan": [906, 2292]
+    },
+    "AB":{
+        "persediaan": [10, 264],
+        "permintaan": [244, 486],
+        "penerimaan": [199, 593]
+    }
+}

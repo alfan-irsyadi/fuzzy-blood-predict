@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=Delius+Unicase:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,96 +48,42 @@
   font-family: "Delius Unicase", cursive;
 } */
 
-h1 {
-  font-family: "Borel", cursive;
-}
 
 @layer base {
   body {
-    @apply bg-gray-200 text-black
+    @apply text-black
   }
 
-  .main {
-    @apply p-5 flex items-center justify-center align-middle mx-auto
+  .radio{
+    @apply w-full bg-red-800
   }
 
-  .content {
-    @apply flex flex-col h-full w-[100%] bg-gray-300 rounded-2xl p-5 grid grid-cols-1 xl:grid-cols-2 gap-60 z-10 overflow-hidden;
+  .input{
+    @apply w-full px-2 my-2 py-1 bg-gray-100  shadow-xl
+  } 
+  .option-golda{
+    @apply w-full flex
+  }
+  .golda{
+    @apply mr-1
+  }
+  .input-radio{
+    @apply mr-4
+  }
+  .div-input{
+    @apply py-2
   }
 
-  .form-input {
-    @apply relative h-[80vh] pl-40 pt-4;
+  .navbar{
+    @apply sticky bg-white
   }
-
-  .min-max {
-    @apply grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10;
+  .logo{
+    @apply flex flex-row bg-white shadow-xl p-2
   }
-
-  .input-min-max {
-    @apply mb-4;
+  .mobile{
+    @apply flex-col
   }
-
-  .main-input {
-    @apply flex flex-col;
-  }
-
-  .input-data {
-    @apply w-full text-black px-2 py-1;
-  }
-
-  .button-min-max {
-    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold rounded-2xl mt-4;
-  }
-
-  .button-defuzzifikasi {
-    @apply bg-green-800 w-full p-2 mt-4 text-white font-bold rounded-2xl mt-4;
-  }
-
-  .people {
-    @apply absolute h-96 -bottom-40 -z-10 -left-20 overflow-clip;
-  }
-
-  h1 {
-    @apply text-4xl font-bold
-  }
-
-  .form-prediksi {
-    @apply pt-4 pr-40 relative;
-  }
-
-  .div-form-prediksi {
-    @apply mt-10
-  }
-
-  .navbar {
-    @apply sticky flex text-black top-0 h-20 align-middle items-center sm:justify-center md:justify-between z-50 p-4
-  }
-
-  .navbar-logo {
-    @apply flex flex-row font-bold text-2xl items-center
-  }
-
-  .menu {
-    @apply flex flex-row h-full align-middle items-center sm:hidden md:flex
-  }
-
-  .menu-item {
-    @apply px-10 hover:bg-white hover:text-black h-full items-center flex w-full font-bold hover:cursor-pointer
-  }
-
-  .blood-logo {
-    @apply h-20
-  }
-
-  .blood2 {
-    @apply absolute -top-20 -right-40 h-96 -z-10 
-  }
-
-  .vira{
-    @apply text-xs
-  }
-
-  input{
-    @apply shadow-lg rounded-2xl focus:border-red-700 mt-2
+  .desktop{
+    @apply grid-cols-3
   }
 }
