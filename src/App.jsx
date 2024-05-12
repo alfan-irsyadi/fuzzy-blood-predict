@@ -33,13 +33,15 @@ function App() {
 
   
 
-  function predict(e) {
+  function predict(e) {    
     var GoldaA = new FuzzyLogic(muPersediaan, muPermintaan, muPenerimaan)
     GoldaA.setRules(rules)
+    // print(['HMMMM', GoldaA.intFuzzyNaik(673, 673, 1345)])
     print(['alp', GoldaA])    
     setShowModal(true)
     setMamdani(Math.ceil(GoldaA.mamdani(persediaan, permintaan)))
     setSugeno(Math.ceil(GoldaA.sugeno(persediaan, permintaan)))
+    print(GoldaA.titikPotong())
   }
 
   function update() {

@@ -67,113 +67,82 @@ export class FuzzyLogic {
         
     }
 
-    momen = () => {
+    titikPotong = ()=>{
+        var [a, b, c] = this.batasPenerimaan
         var alpha1 = this.alphaMax['sedikit']
         var alpha2 = this.alphaMax['sedang']
         var alpha3 = this.alphaMax['banyak']
-
-        var xA1, xB1, xB2, xB3, xB4, xC1
-        var luasA, luasB, luasC
-        var [a, b, c] = this.batasPenerimaan
-        // var [x1, x2, x3, x4 ] =  [invFuzzyTurun(alpha1, a, b), invFuzzyNaik(alpha2, a, b), invFuzzyTurun(alpha2, b, c), invFuzzyNaik(alpha3, b, c)]
-        // var alpha1 = 0.2
+        var y = []
         var xPot1 = (a + b) / 2
         var yPot1 = this.fuzzyTurun(xPot1, a, b)
         var xPot2 = (b + c) / 2
         var yPot2 = this.fuzzyTurun(xPot2, b, c)
-        var luas = 0
-        var x1 = alpha1 < yPot1 ? this.invFuzzyNaik(alpha1, a, b) : this.invFuzzyTurun(alpha1, a, b)
-        var x2 = alpha2 > yPot1 ? this.invFuzzyNaik(alpha2, a, b) : this.invFuzzyTurun(alpha2, a, b)
-        var x3 = alpha2 < yPot2 ? this.invFuzzyNaik(alpha2, b, c) : this.invFuzzyTurun(alpha2, b, c)
-        var x4 = alpha3 > yPot2 ? this.invFuzzyNaik(alpha3, b, c) : this.invFuzzyTurun(alpha3, b, c)
-        this.x1 = x1
-        this.x2 = x2
-        this.x3 = x3
-        this.x4 = x4
+        var x1 = alpha1 > yPot1 ? this.invFuzzyTurun(alpha1, a, b) : this.invFuzzyNaik(alpha1, a, b)
+        var y1 = alpha1
+        var x2 = alpha1 > yPot1 ? xPot1 : this.invFuzzyTurun(alpha1, a, b)
+        var y2 = alpha1 > yPot1 ? yPot1 : alpha1
 
-        luas = this.integral(x => alpha1 * x, [a, x1]) 
-        // print(['luas 1 A - X1', luas])
+        var x3 = alpha2 > yPot1 ? xPot1 : this.invFuzzyNaik(alpha2, a, b)
+        var y3 = alpha2 > yPot1 ? yPot1 : alpha2
+
+        var x4 = alpha2 < yPot1 ? this.invFuzzyTurun(alpha2, a, b) : this.invFuzzyNaik(alpha2, a, b)        
+        var y4 = alpha2
         
-        luas += this.integral(x => (alpha1 < yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [x1, xPot1])
-        // print(['luas II X1-Xpot1', this.integral(x => (alpha1 < yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [x1, xPot1])])
-        luas += this.integral(x => (alpha2 > yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [xPot1, x2])
-        // print(['luas III Xpot1-X2', this.integral(x => (alpha2 > yPot1 ? x * this.fuzzyNaik(x, a, b) : x * this.fuzzyTurun(x, a, b)), [xPot1, x2])])
-        luas += this.integral(x => alpha2 * x, [x2, b])
-        // print(['luas IV X2 - B', this.integral(x => alpha2 * x, [x2, b])])
+        var xSub1 = alpha1 > alpha2 ? x2 : x3
+        var ySub1 = alpha1 > alpha2 ? y2 : y3
 
-        luas += this.integral(x => x * alpha2, [b, x3])
-        // print(['luas V B - X3', this.integral(x => x * alpha2, [b, x3])])
+        var x5 = alpha2 > yPot2 ? this.invFuzzyTurun(alpha2, b, c) : this.invFuzzyNaik(alpha2, b, c)
+        var y5 = alpha2
 
-        luas += this.integral(x => (alpha2 < yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [x3, xPot2])
-        // print(['luas VI X3 - Xpot2', this.integral(x => (alpha2 < yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [x3, xPot2])])
-        
-        luas += this.integral(x => (alpha3 > yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [xPot2, x4])
-        // print(['luas VII Xpot2 - X4', this.integral(x => (alpha3 > yPot2 ? x * this.fuzzyNaik(x, b, c) : x * this.fuzzyTurun(x, b, c)), [xPot2, x4])])
+        var x6 = alpha2 > yPot2 ? xPot2 : this.invFuzzyTurun(alpha2, b, c)
+        var y6 = alpha2 > yPot2 ? yPot2 : alpha2
 
-        luas += this.integral(x => x * alpha3, [x4, c])
-        // print(['luas VIII X - B', this.integral(x => x * alpha3, [x4, c])])
-        // print(['luas', luas])
+        var x7 = alpha3 > yPot2 ? xPot2 : this.invFuzzyNaik(alpha3, b, c)
+        var y7 = alpha3 > yPot2 ? yPot2 : alpha3
 
-        /*
-        (b - x)/(b-a) = (x - a)/(b - a)
-        b - x = x - a
-    
-        */
-        return luas
+        var x8 = alpha3 < yPot2 ? this.invFuzzyTurun(alpha3, b, c) : this.invFuzzyNaik(alpha3, b, c)        
+        var y8 = alpha3
+
+        var xSub2 = alpha2 > alpha3 ? x6 : x7        
+        var ySub2 = alpha2 > alpha3 ? y6 : y7
+        return ([[a, alpha1], 
+            [x1, y1], 
+            [xSub1, ySub1],             
+            [x4, y4], 
+            [b, alpha2], 
+            [x5, y5], 
+            [xSub2, ySub2], 
+            [x8, y8], 
+            [c, alpha3]])
     }
 
-    luas = () => {
-        // alpha = this.alpha
-        // print(this.alpha)
-        var alpha1 = this.alphaMax['sedikit']
-        var alpha2 = this.alphaMax['sedang']
-        var alpha3 = this.alphaMax['banyak']
-        var xA1, xB1, xB2, xB3, xB4, xC1
-        var luasA, luasB, luasC
-        var [a, b, c] = this.batasPenerimaan        
-        // var [x1, x2, x3, x4 ] =  [this.invFuzzyTurun(alpha1, a, b), this.invFuzzyNaik(alpha2, a, b), this.invFuzzyTurun(alpha2, b, c), this.invFuzzyNaik(alpha3, b, c)]
-        // var alpha1 = 0.2
-        var xPot1 = (a + b) / 2
-        var yPot1 = this.fuzzyTurun(xPot1, a, b)        
-        var xPot2 = (b + c) / 2
-        var yPot2 = this.fuzzyTurun(xPot2, b, c)
+    linear = (x, A, B)=>{
+        let [x1, y1] = A
+        let [x2, y2] = B
+        return (x2 == x1 ? 0 : (y2-y1)/(x2-x1)*(x - x1) + y1)
+    }
 
-        var luas = 0
-        var x1 = alpha1 < yPot1 ? this.invFuzzyNaik(alpha1, a, b) : this.invFuzzyTurun(alpha1, a, b)        
-        var x2 = alpha2 > yPot1 ? this.invFuzzyNaik(alpha2, a, b) : this.invFuzzyTurun(alpha2, a, b)
-        var x3 = alpha2 < yPot2 ? this.invFuzzyNaik(alpha2, b, c) : this.invFuzzyTurun(alpha2, b, c)
-        var x4 = alpha3 > yPot2 ? this.invFuzzyNaik(alpha3, b, c) : this.invFuzzyTurun(alpha3, b, c)
-        print([alpha1, yPot1])
-
-        luas = this.integral(x => alpha1 , [a, x1]) 
-        print(['luas 1 A - X1', luas])
-        
-        luas += this.integral(x => (alpha1 < yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [x1, xPot1])
-        print(['luas II X1-Xpot1', this.integral(x => (alpha1 < yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [x1, xPot1])])
-        luas += this.integral(x => (alpha2 > yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [xPot1, x2])
-        print(['luas III Xpot1-X2', this.integral(x => (alpha2 > yPot1 ?  this.fuzzyNaik(x, a, b) :  this.fuzzyTurun(x, a, b)), [xPot1, x2])])
-        luas += this.integral(x => alpha2 , [x2, b])
-        print(['luas IV X2 - B', this.integral(x => alpha2 , [x2, b])])
-
-        luas += this.integral(x =>  alpha2, [b, x3])
-        print(['luas V B - X3', this.integral(x =>  alpha2, [b, x3])])
-
-        luas += this.integral(x => (alpha2 < yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [x3, xPot2])
-        print(['luas VI X3 - Xpot2', this.integral(x => (alpha2 < yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [x3, xPot2])])
-        
-        luas += this.integral(x => (alpha3 > yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [xPot2, x4])
-        print(['luas VII Xpot2 - X4', this.integral(x => (alpha3 > yPot2 ?  this.fuzzyNaik(x, b, c) :  this.fuzzyTurun(x, b, c)), [xPot2, x4])])
-
-        luas += this.integral(x =>  alpha3, [x4, c])
-        print(['luas VIII X - B', this.integral(x =>  alpha3, [x4, c])])
-        print(['luas', luas])
-        /*
-        (b - x)/(b-a) = (x - a)/(b - a)
-        b - x = x - a
+    momen = () => {
+        var titik = this.titikPotong()
+        var hasil = 0
+        for(let i = 0; i < titik.length-1 ; i++){
+            hasil += this.integral(x=> x*this.linear(x, titik[i], titik[i+1]), [titik[i][0], titik[i+1][0]] )
+        }        
+        return hasil
+    }
     
-        */
-        
-        return luas
+    luasTrapesium = (alas, atas, t)=>(alas+atas)*t/2
+
+    luas = () => {
+        var titik = this.titikPotong()
+        print(titik)
+        var hasil = 0
+        for(let i = 0; i < titik.length-1 ; i++){
+            let z = [titik[i][0], titik[i+1][0]]
+            hasil += this.integral(x=> this.linear(x, titik[i], titik[i+1]), z)
+            print(['Luas ', titik[i], ' dan ', titik[i+1], ' = ', this.integral(x=> this.linear(x, titik[i], titik[i+1]), z)])
+        }        
+        return hasil
     }
 
     fuzzySet(a, b, c) {
@@ -287,5 +256,6 @@ export const rules = [{
     'permintaan': 'banyak',
     'penerimaan': 'banyak'
 },]
+
 
 
