@@ -1,17 +1,17 @@
 
 
 export class FuzzyLogic {
-    constructor(persediaan, permintaan, penerimaan) {
+    constructor(persediaan, permintaan, kebutuhan) {
         var [a1, b1, c1] = persediaan
         var [a2, b2, c2] = permintaan
-        var [a3, b3, c3] = penerimaan
+        var [a3, b3, c3] = kebutuhan
         this.batasPersediaan = persediaan
         this.batasPermintaan = permintaan
-        this.batasPenerimaan = penerimaan
+        this.batasKebutuhan = kebutuhan
         this.fuzzySets = {
             'persediaan': this.fuzzySet(a1, b1, c1),
             'permintaan': this.fuzzySet(a2, b2, c2),
-            'penerimaan': this.fuzzySet(a3, b3, c3)
+            'kebutuhan': this.fuzzySet(a3, b3, c3)
         }
 
     }
@@ -32,7 +32,7 @@ export class FuzzyLogic {
     setRules = (rules) => this.rules = rules        
 
     inferensi(input1, input2) {
-        var penerimaan = {
+        var kebutuhan = {
             'sedikit': [],
             'sedang': [],
             'banyak': []
@@ -52,9 +52,9 @@ export class FuzzyLogic {
             'sedang': [],
             'banyak': []
         }
-        for (let key in penerimaan) {
-            penerimaan[key] = this.rules.filter(e => e.penerimaan == key)
-            penerimaan[key].forEach(e => {
+        for (let key in kebutuhan) {
+            kebutuhan[key] = this.rules.filter(e => e.kebutuhan == key)
+            kebutuhan[key].forEach(e => {
                 // print(e)
                 let mu1 = this.fuzzySets['persediaan'][e['persediaan']](input1)
                 let mu2 = this.fuzzySets['permintaan'][e['permintaan']](input2)
@@ -68,7 +68,7 @@ export class FuzzyLogic {
     }
 
     titikPotong = ()=>{
-        var [a, b, c] = this.batasPenerimaan
+        var [a, b, c] = this.batasKebutuhan
         var alpha1 = this.alphaMax['sedikit']
         var alpha2 = this.alphaMax['sedang']
         var alpha3 = this.alphaMax['banyak']
@@ -167,17 +167,17 @@ export class FuzzyLogic {
         return hasil
     }
 
-    // fuzzySets(persediaan, permintaan, penerimaan) {
+    // fuzzySets(persediaan, permintaan, kebutuhan) {
     //     var [a1, c1] = persediaan
     //     var [a2, c2] = permintaan
-    //     var [a3, c3] = penerimaan
+    //     var [a3, c3] = kebutuhan
     //     var b1 = (c1 + a1) / 2
     //     var b2 = (c2 + a2) / 2
     //     var b3 = (c3 + a3) / 2
     //     return {
     //         'persediaan': this.fuzzySet(a1, b1, c1),
     //         'permintaan': this.fuzzySet(a2, b2, c2),
-    //         'penerimaan': this.fuzzySet(a3, b3, c3)
+    //         'kebutuhan': this.fuzzySet(a3, b3, c3)
     //     }
     // }
 
@@ -190,7 +190,7 @@ export class FuzzyLogic {
 
     sugeno(input1, input2){
         this.inferensi(input1, input2)        
-        var [a, b, c] = this.batasPenerimaan
+        var [a, b, c] = this.batasKebutuhan
         var x = {
             'sedikit': a,
             'sedang': b,
@@ -214,47 +214,47 @@ const print = (x) => console.log(x)
 export const rules = [{
     'persediaan': 'sedikit',
     'permintaan': 'sedikit',
-    'penerimaan': 'sedikit'
+    'kebutuhan': 'sedikit'
 },
 {
     'persediaan': 'sedikit',
     'permintaan': 'sedang',
-    'penerimaan': 'sedang'
+    'kebutuhan': 'sedang'
 },
 {
     'persediaan': 'sedikit',
     'permintaan': 'banyak',
-    'penerimaan': 'banyak'
+    'kebutuhan': 'banyak'
 },
 {
     'persediaan': 'sedang',
     'permintaan': 'sedikit',
-    'penerimaan': 'sedikit'
+    'kebutuhan': 'sedikit'
 },
 {
     'persediaan': 'sedang',
     'permintaan': 'sedang',
-    'penerimaan': 'sedang'
+    'kebutuhan': 'sedang'
 },
 {
     'persediaan': 'sedang',
     'permintaan': 'banyak',
-    'penerimaan': 'banyak'
+    'kebutuhan': 'banyak'
 },
 {
     'persediaan': 'banyak',
     'permintaan': 'sedikit',
-    'penerimaan': 'sedikit'
+    'kebutuhan': 'sedikit'
 },
 {
     'persediaan': 'banyak',
     'permintaan': 'sedang',
-    'penerimaan': 'sedang'
+    'kebutuhan': 'sedang'
 },
 {
     'persediaan': 'banyak',
     'permintaan': 'banyak',
-    'penerimaan': 'banyak'
+    'kebutuhan': 'banyak'
 },]
 
 

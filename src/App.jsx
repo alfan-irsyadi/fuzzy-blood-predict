@@ -27,14 +27,14 @@ function App() {
   const { height, width } = useWindowDimensions()
   var muPersediaan = mid(dataForm[golda]['persediaan'])
   var muPermintaan = mid(dataForm[golda]['permintaan'])
-  var muPenerimaan = mid(dataForm[golda]['penerimaan'])
+  var muKebutuhan = mid(dataForm[golda]['kebutuhan'])
   // print(muPersediaan)
   const rasio = width / height
 
   
 
   function predict(e) {    
-    var GoldaA = new FuzzyLogic(muPersediaan, muPermintaan, muPenerimaan)
+    var GoldaA = new FuzzyLogic(muPersediaan, muPermintaan, muKebutuhan)
     GoldaA.setRules(rules)
     // print(['HMMMM', GoldaA.intFuzzyNaik(673, 673, 1345)])
     print(['alp', GoldaA])    
@@ -67,7 +67,7 @@ function App() {
             <img src={bloodBank} height={60} width={60} alt="" srcset="" />
           </div>
           <div className='flex flex-col'>
-            <span className='text-xl font-bold text-red-600'>Fuzzy Blood Predict</span>
+            <span className='text-xl font-bold text-red-600'>Fuzzy Blood Prediction</span>
             <span className='text-xs'>Vira Amalia Putri - Universitas Sumatera Utara</span>
           </div>
         </div>
@@ -141,7 +141,7 @@ function App() {
             </div>
 
             {
-              ['persediaan', 'permintaan', 'penerimaan'].map(x => {
+              ['persediaan', 'permintaan', 'kebutuhan'].map(x => {
                 // 
                 return <>
                   <div className='div-input'>
@@ -163,7 +163,7 @@ function App() {
         </div>
         <div className='px-10 py-4 bg-red-600 col-span-1 text-white'>
           <div className='flex flex-row text-left justify-start border-b-2 py-4 border-b-white w-full font-bold text-2xl mb-4'>
-            <h1>Prediksi Penerimaan</h1>
+            <h1>Prediksi Kebutuhan</h1>
           </div>
           <form action="" className=''>
             <div className='div-input'>
